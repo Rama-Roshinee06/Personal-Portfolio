@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rama Roshinee S V | Portfolio</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--primary:#ff2d95;
+--secondary:#00d4ff;
+--accent:#a78bfa;
+--bg-dark:#0a0e27;
+--bg-card:#1a1f3a;
+--text-light:#e0e6ff;
+--glass:rgba(26,31,58,.75);
+}
+html{scroll-behavior:smooth}
+body{
+font-family:'Segoe UI',sans-serif;
+font-weight:500;
+color:var(--text-light);
+overflow-x:hidden;
+background:var(--bg-dark);
+}
+
+/* ===== BACKGROUND ===== */
+#bg-canvas{
+position:fixed;
+inset:0;
+z-index:-1;
+}
+
+/* ===== NAV ===== */
+nav{
+position:fixed;
+top:0;width:100%;
+z-index:1000;
+padding:15px 0;
+backdrop-filter:blur(15px);
+background:rgba(10,14,39,.8);
+border-bottom:1px solid rgba(255,255,255,.1)
+}
+.nav-container{
+max-width:1200px;margin:auto;padding:0 20px;
+display:flex;justify-content:space-between;align-items:center
+}
+.logo{
+font-size:24px;font-weight:700;
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent
+}
+.nav-links{list-style:none;display:flex;gap:25px}
+.nav-links a{
+text-decoration:none;
+color:var(--text-light);
+font-weight:600;
+position:relative;
+transition:.3s
+}
+.nav-links a::after{
+content:'';position:absolute;bottom:-5px;left:0;width:0;height:2px;
+background:linear-gradient(90deg,var(--primary),var(--secondary));
+transition:.3s
+}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+
+/* ===== SECTIONS ===== */
+section{
+min-height:100vh;
+padding:100px 20px 60px;
+display:flex;align-items:center;justify-content:center
+}
+.container{
+max-width:1200px;width:100%;
+background:var(--glass);
+backdrop-filter:blur(18px);
+padding:50px;
+border-radius:30px;
+box-shadow:0 15px 40px rgba(0,0,0,.3);
+border:1px solid rgba(255,255,255,.1)
+}
+h2{
+text-align:center;
+font-size:2.8rem;
+margin-bottom:40px;
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent
+}
+
+/* ===== HOME ===== */
+.home-content{text-align:center;background:transparent}
+.home-content h1{
+font-size:3.5rem;
+color:#fff;
+margin-bottom:15px;
+text-shadow:0 0 30px rgba(255,45,149,.5)
+}
+.home-content p{
+font-size:1.3rem;
+color:var(--text-light);
+margin-bottom:10px
+}
+.btn{
+display:inline-block;
+padding:14px 35px;
+border-radius:30px;
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+color:#fff;text-decoration:none;
+margin:10px;font-weight:600;
+border:none;cursor:pointer;
+transition:.3s;
+box-shadow:0 0 20px rgba(255,45,149,.4)
+}
+.btn:hover{
+transform:translateY(-3px);
+box-shadow:0 0 30px rgba(0,212,255,.6)
+}
+
+/* ===== ABOUT ===== */
+.about-content{
+max-width:900px;margin:auto;padding:40px;
+background:rgba(26,31,58,.4);
+border-radius:20px;
+border:1px solid rgba(255,255,255,.1)
+}
+.about-content p{
+font-size:1.2rem;
+line-height:2;
+text-align:center;
+color:var(--text-light)
+}
+
+/* ===== EXPERIENCE ===== */
+.experience-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px
+}
+.experience-card{
+background:var(--bg-card);
+padding:35px;
+border-radius:20px;
+border-left:5px solid var(--primary);
+transition:.4s;
+border:1px solid rgba(255,255,255,.1)
+}
+.experience-card:hover{
+transform:translateY(-8px);
+border-left-color:var(--secondary);
+box-shadow:0 0 30px rgba(255,45,149,.3)
+}
+.exp-icon{
+width:60px;height:60px;
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+border-radius:15px;
+display:flex;align-items:center;justify-content:center;
+color:#fff;font-size:1.8rem;margin-bottom:20px
+}
+.exp-year{
+display:inline-block;
+padding:6px 16px;
+border-radius:20px;
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+color:#fff;
+margin-bottom:15px
+}
+.experience-card h3{
+color:var(--secondary);
+margin-bottom:12px;
+font-size:1.5rem
+}
+.experience-card p{
+color:var(--text-light);
+line-height:1.7
+}
+
+/* ===== SKILLS / PROJECTS ===== */
+.skills-container,.projects-container{display:flex;gap:40px}
+.skill-list,.project-list{
+flex:1;display:flex;flex-direction:column;gap:12px;
+border-right:2px solid var(--primary);
+padding-right:25px;
+max-height:450px;
+overflow-y:auto
+}
+.skill-list::-webkit-scrollbar,.project-list::-webkit-scrollbar{width:6px}
+.skill-list::-webkit-scrollbar-track,.project-list::-webkit-scrollbar-track{
+background:rgba(255,255,255,.1);border-radius:10px
+}
+.skill-list::-webkit-scrollbar-thumb,.project-list::-webkit-scrollbar-thumb{
+background:var(--primary);border-radius:10px
+}
+.skill-item,.project-item{
+padding:15px;
+border-radius:12px;
+background:var(--bg-card);
+cursor:pointer;
+font-weight:600;
+transition:.3s;
+border-left:4px solid transparent;
+border:1px solid rgba(255,255,255,.1)
+}
+.skill-item:hover,.project-item:hover{
+border-left-color:var(--primary);
+transform:translateX(5px);
+box-shadow:0 0 15px rgba(255,45,149,.2)
+}
+.skill-item.active,.project-item.active{
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+color:#fff;
+border-left-color:#fff;
+box-shadow:0 0 20px rgba(255,45,149,.4)
+}
+.skill-details,.project-details{
+flex:2;
+padding-left:30px;
+border-left:2px dashed rgba(255,255,255,.2)
+}
+.skill-details h3,.project-details h3{
+font-size:2rem;
+color:var(--secondary);
+margin-bottom:20px
+}
+.skill-details p,.project-details p{
+margin-bottom:15px;
+font-size:1.15rem;
+line-height:1.8;
+color:var(--text-light)
+}
+.skill-details ul,.project-details ul{
+list-style:none;
+padding-left:0
+}
+.skill-details ul li,.project-details ul li{
+margin-bottom:12px;
+font-size:1.05rem;
+padding-left:25px;
+position:relative;
+color:var(--text-light)
+}
+.skill-details ul li::before,.project-details ul li::before{
+content:'▸';
+position:absolute;
+left:0;
+color:var(--primary);
+font-weight:bold
+}
+.project-content{
+max-height:500px;
+overflow-y:auto;
+padding-right:15px;
+white-space:pre-wrap;
+line-height:1.9;
+font-size:1.05rem;
+color:var(--text-light)
+}
+.project-content::-webkit-scrollbar{width:8px}
+.project-content::-webkit-scrollbar-track{
+background:rgba(255,255,255,.1);border-radius:10px
+}
+.project-content::-webkit-scrollbar-thumb{
+background:var(--primary);border-radius:10px
+}
+
+/* ===== CUBE ===== */
+.cube-container{
+perspective:1200px;
+display:flex;
+justify-content:center;
+margin-bottom:30px
+}
+.cube{
+width:280px;height:280px;
+transform-style:preserve-3d;
+transition:1s
+}
+.cube-face{
+position:absolute;width:280px;height:280px;
+border-radius:20px;
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+display:flex;flex-direction:column;
+align-items:center;justify-content:center;
+gap:15px;
+color:#fff;font-size:1.3rem;
+border:2px solid rgba(255,255,255,.2);
+box-shadow:0 10px 30px rgba(0,0,0,.3)
+}
+.cube-face i{font-size:3.5rem}
+.front{transform:rotateY(0) translateZ(140px)}
+.back{transform:rotateY(180deg) translateZ(140px)}
+.right{transform:rotateY(90deg) translateZ(140px)}
+.left{transform:rotateY(-90deg) translateZ(140px)}
+.top{transform:rotateX(90deg) translateZ(140px)}
+.bottom{transform:rotateX(-90deg) translateZ(140px)}
+
+.cube-controls{
+display:flex;
+gap:15px;
+justify-content:center;
+flex-wrap:wrap
+}
+.cube-btn{
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:var(--bg-card);
+color:var(--text-light);
+cursor:pointer;
+transition:.3s;
+font-weight:600;
+border:1px solid rgba(255,255,255,.1)
+}
+.cube-btn:hover{
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+color:#fff;
+transform:translateY(-3px);
+box-shadow:0 0 20px rgba(255,45,149,.4)
+}
+
+/* ===== CONTACT ===== */
+.contact-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+margin-top:30px
+}
+.contact-info{
+display:flex;
+flex-direction:column;
+gap:20px
+}
+.contact-item{
+display:flex;
+align-items:center;
+gap:15px;
+padding:20px;
+background:var(--bg-card);
+border-radius:15px;
+transition:.3s;
+border-left:4px solid transparent;
+border:1px solid rgba(255,255,255,.1)
+}
+.contact-item:hover{
+transform:translateX(8px);
+border-left-color:var(--primary);
+box-shadow:0 0 20px rgba(255,45,149,.2)
+}
+.contact-icon{
+width:55px;height:55px;
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+color:#fff;font-size:1.3rem;
+flex-shrink:0
+}
+.contact-item h4{
+margin-bottom:5px;
+color:var(--secondary);
+font-weight:700
+}
+.contact-item p{
+color:var(--text-light);
+font-size:.95rem
+}
+.contact-form{
+display:flex;
+flex-direction:column;
+gap:18px
+}
+.form-group input,.form-group textarea{
+width:100%;
+padding:15px;
+border:2px solid rgba(255,255,255,.1);
+border-radius:12px;
+background:var(--bg-card);
+color:var(--text-light);
+font-family:inherit;
+transition:.3s;
+font-size:1rem
+}
+.form-group input:focus,.form-group textarea:focus{
+outline:none;
+border-color:var(--primary);
+box-shadow:0 0 15px rgba(255,45,149,.2)
+}
+.form-group input::placeholder,.form-group textarea::placeholder{
+color:rgba(224,230,255,.5)
+}
+
+@media (max-width:768px){
+.container{padding:30px 25px}
+h2{font-size:2.2rem}
+.experience-grid{grid-template-columns:1fr}
+.skills-container,.projects-container{flex-direction:column}
+.skill-list,.project-list{
+border-right:none;border-bottom:2px solid var(--primary);
+padding-right:0;padding-bottom:20px;max-height:none
+}
+.skill-details,.project-details{
+border-left:none;padding-left:0;padding-top:20px
+}
+.contact-grid{grid-template-columns:1fr}
+.nav-links{flex-direction:column;gap:10px}
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<nav>
+<div class="nav-container">
+<div class="logo">Rama Roshinee</div>
+<ul class="nav-links">
+<li><a href="work.html">Work Portfolio</a></li>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#hobbies">Hobbies</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+</nav>
+
+<!-- ===== HOME ===== -->
+<section id="home">
+<div class="container home-content" style="background:None">
+<h1>Rama Roshinee S V</h1>
+<p><b>Full Stack Developer | CSE Student</b></p>
+<p><b>I build clean, creative and user-focused digital experiences.</b></p>
+<a class="btn" href="#contact">Contact Me</a>
+</div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section id="about">
+<div class="container">
+<h2>About Me</h2>
+<div class="about-content">
+<p>
+I am a Computer Science student focused on building real-world products that make a difference. 
+With a passion for both frontend elegance and backend logic, I thrive on turning complex problems 
+into simple, beautiful solutions.
+</p>
+<p>
+I adapt quickly to new technologies, take ownership of my work, and contribute meaningfully to 
+organizational growth through thoughtful engineering and creative problem-solving. My approach 
+combines technical precision with design sensibility to create experiences that users love.
+</p>
+</div>
+</div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<section id="experience">
+<div class="container">
+<h2>Experience & Education</h2>
+<div class="experience-grid">
+<div class="experience-card">
+<div class="exp-icon"><i class="fas fa-graduation-cap"></i></div>
+<span class="exp-year">2023 - Present</span>
+<h3>B.Tech Computer Science</h3>
+<p>Amrita Vishwa Vidyapeetham - Building strong foundations in software engineering, data structures, and system design while working on real-world projects.</p>
+</div>
+
+<div class="experience-card">
+<div class="exp-icon"><i class="fas fa-palette"></i></div>
+<span class="exp-year">2024</span>
+<h3>Design Exploration</h3>
+<p>Expanded into Interior Design, learning the principles of user-centered design, spatial planning, and aesthetic coherence across digital and physical spaces.</p>
+</div>
+
+<div class="experience-card">
+<div class="exp-icon"><i class="fas fa-code"></i></div>
+<span class="exp-year">2025</span>
+<h3>Web Development Intern</h3>
+<p>Selvalakshmi Travels - Developed and maintained web applications, implemented responsive designs, and improved user experience through modern frontend practices.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+<div class="container">
+<h2>My Skills</h2>
+<div class="skills-container">
+<div class="skill-list" id="skill-list"></div>
+<div class="skill-details" id="skill-details"></div>
+</div>
+</div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section id="projects">
+<div class="container">
+<h2>Academic Projects</h2>
+<div class="projects-container">
+<div class="project-list" id="project-list"></div>
+<div class="project-details" id="project-details"></div>
+</div>
+</div>
+</section>
+
+<!-- ===== HOBBIES ===== -->
+<section id="hobbies">
+<div class="container">
+<h2>My Hobbies</h2>
+<div class="cube-container">
+<div class="cube" id="mainCube">
+<div class="cube-face front"><i class="fas fa-cube"></i><span>3D Design</span></div>
+<div class="cube-face back"><i class="fas fa-book"></i><span>Reading</span></div>
+<div class="cube-face right"><i class="fas fa-music"></i><span>Music</span></div>
+<div class="cube-face left"><i class="fas fa-pen"></i><span>Writing</span></div>
+<div class="cube-face top"><i class="fas fa-camera"></i><span>Photography</span></div>
+<div class="cube-face bottom"><i class="fas fa-palette"></i><span>Art</span></div>
+</div>
+</div>
+<div class="cube-controls">
+<button class="cube-btn" onclick="rotateCube('front')">Design</button>
+<button class="cube-btn" onclick="rotateCube('back')">Reading</button>
+<button class="cube-btn" onclick="rotateCube('right')">Music</button>
+<button class="cube-btn" onclick="rotateCube('left')">Writing</button>
+<button class="cube-btn" onclick="rotateCube('top')">Photo</button>
+</div>
+</div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+<div class="container">
+<h2>Get In Touch</h2>
+<div class="contact-grid">
+<div class="contact-info">
+<div class="contact-item">
+<div class="contact-icon"><i class="fas fa-envelope"></i></div>
+<div>
+<h4>Email</h4>
+<p>ramaroshineesv3@gmail.com</p>
+</div>
+</div>
+<div class="contact-item">
+<div class="contact-icon"><i class="fas fa-phone"></i></div>
+<div>
+<h4>Phone</h4>
+<p>+91 9940798552</p>
+</div>
+</div>
+<div class="contact-item">
+<div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+<div>
+<h4>LinkedIn</h4>
+<p>linkedin.com/in/rama-roshinee-s-v-164123304</p>
+</div>
+</div>
+<div class="contact-item">
+<div class="contact-icon"><i class="fab fa-github"></i></div>
+<div>
+<h4>GitHub</h4>
+<p>github.com/rama-roshinee06</p>
+</div>
+</div>
+</div>
+<form class="contact-form" onsubmit="handleSubmit(event)">
+<div class="form-group">
+<input type="text" placeholder="Your Name" required>
+</div>
+<div class="form-group">
+<input type="email" placeholder="Your Email" required>
+</div>
+<div class="form-group">
+<textarea rows="5" placeholder="Your Message" required></textarea>
+</div>
+<button type="submit" class="btn" style="width:100%">Send Message</button>
+</form>
+</div>
+</div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script>
+// Background animation
+const canvas=document.getElementById("bg-canvas");
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,100);
+camera.position.z=15;
+
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true});
+renderer.setSize(innerWidth,innerHeight);
+
+// Create particle field
+const particles=new THREE.Group();
+const particleGeometry=new THREE.SphereGeometry(.08,8,8);
+
+for(let i=0;i<200;i++){
+const hue=Math.random()<.5?300:180;
+const color=new THREE.Color(`hsl(${hue},100%,${50+Math.random()*20}%)`);
+const material=new THREE.MeshBasicMaterial({
+color:color,
+transparent:true,
+opacity:.6
+});
+const particle=new THREE.Mesh(particleGeometry,material);
+particle.position.set(
+(Math.random()-.5)*30,
+(Math.random()-.5)*30,
+(Math.random()-.5)*30
+);
+particle.userData.velocity={
+x:(Math.random()-.5)*.02,
+y:(Math.random()-.5)*.02,
+z:(Math.random()-.5)*.02
+};
+particles.add(particle);
+}
+scene.add(particles);
+
+function animate(){
+requestAnimationFrame(animate);
+particles.rotation.y+=.0005;
+particles.children.forEach(p=>{
+p.position.x+=p.userData.velocity.x;
+p.position.y+=p.userData.velocity.y;
+p.position.z+=p.userData.velocity.z;
+if(Math.abs(p.position.x)>15)p.userData.velocity.x*=-1;
+if(Math.abs(p.position.y)>15)p.userData.velocity.y*=-1;
+if(Math.abs(p.position.z)>15)p.userData.velocity.z*=-1;
+});
+renderer.render(scene,camera);
+}
+animate();
+
+addEventListener("resize",()=>{
+camera.aspect=innerWidth/innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(innerWidth,innerHeight);
+});
+
+// Skills data
+const skills={
+"Frontend Development":{
+desc:"Building clean responsive interfaces.",
+points:["HTML","CSS","JavaScript","Responsive UI","Animations"]
+},
+"Backend Basics":{
+desc:"Understanding server logic.",
+points:["Node.js basics","MySQL","API concepts","SpringBoot"]
+},
+
+"Programming":{
+desc:"Strong foundations.",
+points:["C","Python","DSA basics","Java"]
+}
+};
+
+const sl=document.getElementById("skill-list");
+const sd=document.getElementById("skill-details");
+
+Object.keys(skills).forEach((k,i)=>{
+const d=document.createElement("div");
+d.className="skill-item";
+d.innerText=k;
+d.onclick=()=>{
+document.querySelectorAll(".skill-item").forEach(x=>x.classList.remove("active"));
+d.classList.add("active");
+sd.innerHTML=`<h3>${k}</h3><p>${skills[k].desc}</p><ul>${skills[k].points.map(p=>`<li>${p}</li>`).join("")}</ul>`;
+};
+sl.appendChild(d);
+if(i===0)d.click();
+});
+
+// Projects data
+const projects={
+"Integrated Hotel and Restaurant Management System":{
+content:`An integrated solution combining hotel bookings and restaurant reservations with seamless coordination between services.
+
+Key Features:
+- Unified booking system for rooms and dining
+- Real-time availability tracking
+- Customer preference management
+- Integrated billing and payment processing
+- Staff coordination dashboard
+
+Technologies: Frontend web technologies, database management, API integration
+
+Impact: Streamlined operations and enhanced customer experience through unified service management.`
+},
+"Hotel Management System":{
+content:`A comprehensive system for managing hotel operations including reservations, check-ins, room service, and billing.
+
+Key Features:
+- Room inventory management
+- Guest check-in/check-out processing
+- Housekeeping coordination
+- Billing and invoice generation
+- Reporting and analytics
+
+Technologies: Database design, user interface development, backend logic
+
+Impact: Improved operational efficiency and guest satisfaction through automated processes.`
+},
+"Smart Wearables Using Hybrid Edge-IOT Technology":{
+content:`Research and development of intelligent wearable devices leveraging edge computing and IoT for real-time health monitoring.
+
+Key Features:
+- Edge-based data processing for reduced latency
+- Real-time health metric tracking
+- Energy-efficient architecture
+- Cloud integration for data analytics
+- Privacy-preserving design
+
+Technologies: IoT protocols, edge computing, sensor integration, data processing
+
+Impact: Enhanced healthcare monitoring with improved response times and data privacy.`
+},
+"Braille Input System":{
+content:`An accessible input system enabling visually impaired users to interact with digital devices through Braille.
+
+Key Features:
+- Braille-to-text conversion
+- Multi-language support
+- Haptic feedback integration
+- User-friendly interface
+- Learning mode for new users
+
+Technologies: Input device design, pattern recognition, accessibility standards
+
+Impact: Improved digital accessibility and independence for visually impaired users.`
+},
+"LEON3 Processor Architecture":{
+content:`Study and implementation of the LEON3 processor, a synthesizable VHDL model of a 32-bit SPARC V8 processor.
+
+Key Features:
+- SPARC V8 instruction set architecture
+- Configurable cache systems
+- Pipeline architecture analysis
+- Performance optimization studies
+- Hardware-software co-design
+
+Technologies: VHDL, processor architecture, digital design, simulation tools
+
+Impact: Deep understanding of processor design principles and computer architecture fundamentals.`
+}
+};
+
+const pl=document.getElementById("project-list");
+const pd=document.getElementById("project-details");
+
+Object.keys(projects).forEach((k,i)=>{
+const d=document.createElement("div");
+d.className="project-item";
+d.innerText=k;
+d.onclick=()=>{
+document.querySelectorAll(".project-item").forEach(x=>x.classList.remove("active"));
+d.classList.add("active");
+pd.innerHTML=`<h3>${k}</h3><div class="project-content">${projects[k].content}</div>`;
+};
+pl.appendChild(d);
+if(i===0)d.click();
+});
+
+// Cube rotation
+function rotateCube(face){
+const c=document.getElementById("mainCube");
+const r={
+front:"rotateX(0) rotateY(0)",
+back:"rotateY(180deg)",
+right:"rotateY(-90deg)",
+left:"rotateY(90deg)",
+top:"rotateX(-90deg)"
+};
+c.style.transform=r[face];
+}
+
+// Form submission
+function handleSubmit(e){
+e.preventDefault();
+alert("Thank you for your message! I'll get back to you soon.");
+e.target.reset();
+}
+</script>
+
+</body>
+</html>

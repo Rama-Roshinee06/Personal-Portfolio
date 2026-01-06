@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selvalakshmi Travels - CSE Internship Portfolio</title>
+  <meta name="description" content="A Computer Science Engineering internship portfolio showcasing digital solutions for Selvalakshmi Travels pilgrimage tours.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --saffron: 24, 95%, 53%;
+      --saffron-light: 30, 100%, 70%;
+      --saffron-dark: 20, 90%, 45%;
+      --cream: 45, 60%, 96%;
+      --cream-light: 45, 80%, 98%;
+      --sandalwood: 30, 30%, 40%;
+      --sandalwood-light: 30, 25%, 55%;
+      --sandalwood-dark: 25, 35%, 25%;
+      --gold: 45, 90%, 55%;
+      --gold-light: 50, 85%, 70%;
+      --temple-brown: 25, 40%, 20%;
+      --background: 45, 60%, 96%;
+      --foreground: 25, 40%, 20%;
+      --card: 45, 50%, 98%;
+      --border: 30, 20%, 85%;
+      --primary: 24, 95%, 53%;
+      --primary-foreground: 45, 80%, 98%;
+      --secondary: 30, 40%, 90%;
+      --muted: 30, 15%, 60%;
+      --radius: 12px;
+    }
+    /* TEMPLE SLIDESHOW STYLES */
+    .temple-slideshow {
+      background: linear-gradient(135deg, hsl(var(--cream)) 0%, hsl(var(--cream-light)) 100%);
+      padding: 1rem 0;
+      overflow: hidden;
+      border-bottom: 2px solid hsla(var(--saffron), 0.2);
+      margin-top: 80px; /* Adjust this to match your navbar height */
+    }
+    
+    .slideshow-track {
+      display: flex;
+      gap: 3rem;
+      animation: scroll-temples 30s linear infinite;
+      width: max-content;
+    }
+
+    .temple-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .temple-item img {
+      height: 80px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px hsla(var(--saffron), 0.2));
+      transition: transform 0.3s;
+    }
+
+    .temple-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .temple-name {
+      font-size: 0.75rem;font-weight: 500;color: hsl(var(--sandalwood));text-align: center;opacity: 0;transition: opacity 0.3s;}
+
+    .temple-item:hover .temple-name {opacity: 1;}
+
+    @keyframes scroll-temples {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background-color: hsl(var(--background)); color: hsl(var(--foreground)); line-height: 1.6; overflow-x: hidden; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; line-height: 1.3; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    .section-header { text-align: center; margin-bottom: 3rem; }
+    .section-badge { display: inline-block; padding: 0.5rem 1rem; border-radius: 9999px; background: hsl(var(--secondary)); color: hsl(var(--sandalwood)); font-size: 0.875rem; font-weight: 500; margin-bottom: 1rem; }
+    .section-title { font-size: 2rem; color: hsl(var(--temple-brown)); margin-bottom: 1rem; }
+    .section-divider { width: 6rem; height: 4px; background: linear-gradient(90deg, transparent, hsl(var(--saffron)), transparent); border-radius: 2px; margin: 0 auto; }
+    
+    /* Navbar */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 1.5rem 0; transition: all 0.3s ease; }
+    .navbar.scrolled { background: hsla(var(--cream), 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 20px hsla(var(--saffron), 0.1); padding: 0.75rem 0; }
+    .navbar-container { display: flex; justify-content: space-between; align-items: center; }
+    .navbar-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, hsl(var(--saffron)) 0%, hsl(var(--gold)) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .navbar-links { display: flex; gap: 2rem; list-style: none; }
+    .navbar-links a { font-size: 0.875rem; font-weight: 500; color: hsl(var(--sandalwood)); }
+
+    /* Hero */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 80px; }
+    .hero-title { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; color: hsl(var(--temple-brown)); }
+
+    /* Work/Trips Section */
+    .work-section { padding: 5rem 0; }
+    .trips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .trip-card { background: white; border-radius: var(--radius); overflow: hidden; border: 1px solid hsl(var(--border)); transition: 0.3s; }
+    .trip-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .trip-img-placeholder { height: 200px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #aaa; }
+    .trip-body { padding: 1.5rem; }
+
+    /* Upcoming Section */
+    .upcoming-section { padding: 5rem 0; }
+    .upcoming-card { max-width: 700px; margin: 0 auto; background: white; border-radius: var(--radius); border: 1px solid #eee; padding: 2rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+
+    /* Footer */
+    .footer { padding: 3rem 0; text-align: center; border-top: 1px solid #eee; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="container navbar-container">
+      <div class="navbar-logo">
+        <div class="logo-icon">🕉️</div>
+        <span class="logo-text" style="font-weight: 700;">Selvalakshmi Travels</span>
+      </div>
+      <ul class="navbar-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Trips</a></li>
+        <li><a href="#upcoming">Upcoming</a></li>
+        <li><a href="myportfolio.html">Portfolio</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="temple-slideshow">
+    <div class="slideshow-track">
+      <div class="temple-item">
+        <img src="guru.jpg" alt="Guruvayoor">
+        <span class="temple-name">Guruvayoor</span>
+      </div>
+      <div class="temple-item">
+        <img src="kashi.jpg" alt="Kashi Vishwanath">
+        <span class="temple-name">Kashi Vishwanath</span>
+      </div>
+      <div class="temple-item">
+        <img src="g.jpg" alt="Ayodhya Ram Mandir">
+        <span class="temple-name">Ganesha</span>
+      </div>
+      <div class="temple-item">
+        <img src="puri.jpg" alt="Puri">
+        <span class="temple-name">Puri Jagannath</span>
+      </div>
+
+      <div class="temple-item">
+        <img src="guru.jpg" alt="Guruvayoor">
+        <span class="temple-name">Guruvayoor</span>
+      </div>
+      <div class="temple-item">
+        <img src="kashi.jpg" alt="Kashi Vishwanath">
+        <span class="temple-name">Kashi Vishwanath</span>
+      </div>
+      <div class="temple-item">
+        <img src="a.jpg" alt="Ayodhya Ram Mandir">
+        <span class="temple-name">Ayodhya Ram Mandir</span>
+      </div>
+      <div class="temple-item">
+        <img src="tanj.jpg" alt="Tanjore">
+        <span class="temple-name">Tanjore</span>
+      </div>
+    </div>
+  </div>
+  <section id="home" class="hero" style="margin:-4%">
+    <div class="container">
+      <span class="section-badge">CSE Internship Project</span>
+      <h1 class="hero-title">Digitalizing Spiritual Journeys</h1>
+      <p style="max-width: 600px; margin: 0 auto 2rem;">A portfolio showcasing the modernization of pilgrimage bookings for Selvalakshmi Travels.</p>
+      <a href="#work" style="background: hsl(var(--saffron)); color: white; padding: 0.8rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600;">View Trips</a>
+    </div>
+  </section>
+
+  <section id="about" style="padding: 5rem 0;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">About the Project</span>
+        <h2 class="section-title">Bridging Tradition & Tech</h2>
+        <div class="section-divider"></div>
+      </div>
+      <p style="text-align: center; max-width: 800px; margin: 0 auto;">While learning new technologies has always interested me, my true motivation lies in making them accessible to people who are unfamiliar with digital tools. This perspective led me to an internship with Selvalakshmi Travels, a pilgrimage-focused startup.I noticed that tour coordination relied heavily on manual calls, with the team often contacting many more people than required just to explain itineraries. To address this, I began by designing clear and engaging digital pamphlets, simplifying communication for pilgrims. I am now contributing to the development of an AI-powered website to help digitize operations, improve outreach, and support the organization’s growth—while keeping usability at the core.</p>
+    </div>
+  </section>
+
+  <section id="work" class="work-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Current Work</span>
+        <h2 class="section-title">Active Pilgrimage Packages</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="trips-grid" id="trips-container">
+        </div>
+    </div>
+  </section>
+
+  <section id="upcoming" class="upcoming-section">
+    <div class="container">
+      <div class="upcoming-card">
+        <h2 class="section-title">Coming Soon!</h2>
+        <p>An Intelligent travel recommendation system using ML-driven itinerary optimization and behavioral profiling, integrating dynamic pricing engines,festival-event awareness, and microservices backend with payment gateway implementation for commercial viability.</p>
+        <div style="margin-top: 1rem; color: var(--saffron); font-weight: 600;">Status: In Development ⚙️</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Selvalakshmi Travels | CSE Internship Portfolio</p>
+      <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #999;">Designed by Intern Team</p>
+    </div>
+  </footer>
+
+  <script>
+    // THE NEW TRIP DATA YOU PROVIDED
+    const tripsData = [
+      {
+        image: "guru.jpg",
+        title: { en: "1 Day Guruvayoor Yatra (Masi Magam)", ta: "1 நாள் குருவாயூர் யாத்திரை (மாசி மகம்)" },
+        duration: { en: "1 Day Trip", ta: "1 நாள் பயணம்" },
+        price: { en: "₹3,500 + Train Ticket", ta: "₹3,500 + ரயில் டிக்கெட்" },
+        dateInfo: { en: "March 3rd, 2026", ta: "மார்ச் 3, 2026" }
+      },
+      {
+        image: "kashi.jpg",
+        title: { en: "Kashi, Mathura, Ayodhya Yatra", ta: "காசி, மதுரா, அயோத்யா யாத்திரை" },
+        duration: { en: "4 Days", ta: "4 நாட்கள்" },
+        price: { en: "₹12,000 + Tickets", ta: "₹12,000 + டிக்கெட்" },
+        dateInfo: { en: "March 23-26, 2026", ta: "மார்ச் 23-26, 2026" }
+      },
+      {
+        image: "mysuru.jpg", // PASTE KARNATAKA IMAGE URL HERE
+        title: { en: "2 Day Mysuru Yatra", ta: "2 நாள் கர்நாடக யாத்திரை" },
+        duration: { en: "2 Days", ta: "2 நாட்கள்" },
+        price: { en: "₹3,500 + Train", ta: "₹3,500 + ரயில்" },
+        dateInfo: { en: "Jan 17-18, 2025", ta: "ஜனவரி 17-18, 2025" }
+      }
+    ];
+
+    const tripsContainer = document.getElementById('trips-container');
+    tripsContainer.innerHTML = tripsData.map(trip => `
+      <div class="trip-card">
+        <div class="trip-img-placeholder">
+          ${trip.image ? `<img src="${trip.image}" style="width:100%; height:100%; object-fit:cover;">` : 'Insert Image Here'}
+        </div>
+        <div class="trip-body">
+          <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">${trip.title.en}</h3>
+          <p style="color: #666; font-size: 0.9rem;">${trip.duration.en}</p>
+          <div style="color: var(--saffron); font-weight: 700; margin: 0.5rem 0;">${trip.price.en}</div>
+          <p style="font-size: 0.8rem; color: #999;">${trip.dateInfo.en}</p>
+        </div>
+      </div>
+    `).join('');
+
+    // Navbar Scroll logic
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    });
+  </script>
+</body>
+</html>
